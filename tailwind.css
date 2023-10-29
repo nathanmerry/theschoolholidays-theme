@@ -1,0 +1,7 @@
+/*
+Theme Name: My First WordPress Theme
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
