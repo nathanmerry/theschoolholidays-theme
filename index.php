@@ -37,9 +37,9 @@ $camps->setCampData($_GET['postcode'] ?? null, $_GET['distance'] ?? null);
 <body class="w-full h-screen bg-base text-base-content">
   <div class="">
     <div class="container flex items-center justify-between py-2 text-center lg:py-3">
-      <img src="http://localhost/wp-content/uploads/2023/08/logo-new.png" alt="Image Description" class=h-[50px]>
+      <img src="https://media.igms.io/2023/09/29/1698583256990-9e1843af-6c71-4f7a-8826-98bfa90b6de7.png" alt="Image Description" class=h-[50px]>
     </div>
-    <div class="overflow-hidden bg-center bg-cover bg-base-200" style="transform: scaleX(-1); background-image: url(http://localhost/wp-content/uploads/2023/10/Group-2.png)">
+    <div class="overflow-hidden bg-center bg-cover bg-base-200" style="transform: scaleX(-1); background-image: url(https://media.igms.io/2023/09/29/1698583258087-f5ca51eb-71b9-4370-b1d5-6f7198f1f2e6.png)">
       <divs style="transform: scaleX(-1)" class="container flex justify-center pt-10 pb-12 lg:pt-20 lg:pb-28">
         <div class="inline-block text-center text-white border-4 border-white">
           <div class="px-16 pt-10 pb-2 lg:px-24">
