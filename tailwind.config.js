@@ -2,6 +2,10 @@
 module.exports = {
   content: ["./**/*.php"],
   theme: {
+    container: {
+      center: true,
+      padding: "1rem",
+    },
     extend: {
       fontFamily: {
         caveatBrush: ["'Caveat Brush'", "cursive"],
