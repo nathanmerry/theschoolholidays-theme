@@ -21,8 +21,8 @@
 
     @media (min-width: 1024px) {
       #mainForm {
-        transform: translateY(-55px);
-        margin-bottom: -55px
+        /* transform: translateY(-55px);
+        margin-bottom: -55px */
       }
     }
   </style>
@@ -34,71 +34,76 @@ $camps = new Camps();
 $camps->setCampData($_GET['postcode'] ?? null, $_GET['distance'] ?? null);
 ?>
 
-<body class="w-full h-screen bg-base text-base-content">
-  <div class="">
-    <div class="container flex items-center justify-between py-2 text-center lg:py-3">
-      <img src="https://media.igms.io/2023/09/29/1698583256990-9e1843af-6c71-4f7a-8826-98bfa90b6de7.png" alt="Image Description" class=h-[50px]>
+<body class="w-full h-screen text-black bg-base">
+  <div>
+    <div class="bg-[#273c75]">
+      <div class="container flex items-center justify-between py-2 text-center lg:py-3">
+        <img src="https://media.igms.io/2023/09/29/1698583256990-9e1843af-6c71-4f7a-8826-98bfa90b6de7.png" alt="Image Description" class=h-[50px]>
+      </div>
     </div>
-    <div class="overflow-hidden bg-center bg-cover bg-base-200" style="transform: scaleX(-1); background-image: url(https://media.igms.io/2023/09/29/1698583258087-f5ca51eb-71b9-4370-b1d5-6f7198f1f2e6.png)">
-      <divs style="transform: scaleX(-1)" class="container flex justify-center pt-10 pb-12 lg:pt-20 lg:pb-28">
-        <div class="inline-block text-center text-white border-4 border-white">
-          <div class="px-16 pt-10 pb-2 lg:px-24">
-            <h1 class="text-4xl font-bold font-oswald">SUMMER HOLIDAY CAMP</h1>
+    <div class="bg-center bg-cover bg-base-200">
+      <div class="container overflow-hidden">
+        <div class="flex justify-center text-[#273c75] py-10">
+          <div class="inline-block text-center text-white">
+            <div class="px-16 pb-2 lg:px-24">
+              <h1 class="text-4xl text-[#273c75] font-bold font-oswald">SUMMER HOLIDAY CAMP</h1>
+            </div>
+            <h2 class="mx-2 text-xl transform" style="transform: translateY(50%);">
+              <span class="inline-block text-[#273c75] px-5 py-2 text-sm font-bold bg-white rounded shadow lg:text-base font-oswald">FIND THE NEAREST HOLIDAY CAMP FOR YOUR KIDS</span>
+            </h2>
           </div>
-          <h2 class="text-xl text-[#2b6fb1] mx-2 transform" style="transform: translateY(50%);">
-            <span class="inline-block px-5 py-2 text-sm font-bold bg-white rounded shadow lg:text-base font-oswald">FIND THE NEAREST HOLIDAY CAMP FOR YOUR KIDS</span>
-          </h2>
         </div>
-      </divs>
+        <div class="pt-5 pb-10">
+          <form id="mainForm" class=" bg-[#fdb900] max-w-[800px] mx-auto px-[3px] py-[3px] flex items-end rounded-lg overflow-hidden gap-[3px]">
+            <div class="w-5/12">
+              <?php if ($camps->errors['postcode'] ?? null) : ?>
+                <p id="postcode-validation" class="mt-2 italic text-error"><?php echo $camps->errors['postcode'] ?></p>
+              <?php endif; ?>
+              <!-- <label class="text-white label" for="">Postcode</label> -->
+              <input class="w-full mt-0 input input-bordered" type="text" name="postcode" required placeholder="Enter Postcode" value="<?php echo $_GET['postcode'] ?? null ?>">
+            </div>
+
+            <div class="w-5/12">
+              <!-- <label class="text-white label" for="">Distance (kilometers)</label> -->
+              <input class="w-full mt-0 input input-bordered" type="number" min="0" name="distance" placeholder="Distance (Miles)" required value="<?php echo $_GET['distance'] ?? null ?>">
+            </div>
+
+            <div class="w-2/12">
+              <button class="w-full btn outline-none border-0 text-white bg-[#273c75] hover:!bg-[#ffd04e]">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
     <section class="lg:container">
-      <form id="mainForm" class="px-4 grid lg:grid-cols-3 items-end gap-2 lg:gap-8 pt-2 pb-4 bg-[#2b6fb1]">
-        <div class="">
-          <?php if ($camps->errors['postcode'] ?? null) : ?>
-            <p id="postcode-validation" class="mt-2 italic text-error"><?php echo $camps->errors['postcode'] ?></p>
-          <?php endif; ?>
-          <label class="text-white label" for="">Postcode</label>
-          <input class="w-full input input-bordered" type="text" name="postcode" required placeholder="Enter Postcode" value="<?php echo $_GET['postcode'] ?? null ?>">
-        </div>
-
-        <div class="">
-          <label class="text-white label" for="">Distance (kilometers)</label>
-          <input class="w-full input input-bordered" type="number" min="0" name="distance" placeholder="Distance (KM)" required value="<?php echo $_GET['distance'] ?? null ?>">
-        </div>
-
-        <div class="w-full">
-          <label class="label"></label>
-          <button class="w-full btn outline-none border-0 text-[#203240] bg-[#fdb900] hover:!bg-[#ffd04e]">Search</button>
-        </div>
-      </form>
     </section>
     <section class="container text-left">
       <?php if (count($camps->campData)) : ?>
         <div class="py-7">
           <?php if ($hasInput) : ?>
-            Found <strong><?php echo count($camps->campData) ?> holiday camps</strong> within <?php echo $_GET['distance'] ?> kilometers of <?php echo $_GET['postcode'] ?>
+            Found <strong><?php echo count($camps->campData) ?> holiday camps</strong> within <?php echo $_GET['distance'] ?> miles of <?php echo $_GET['postcode'] ?>
           <?php else : ?>
             <span class="font-medium">Showing all holiday camps. Search above to find camps within your area...</span>
           <?php endif; ?>
         </div>
-        <div class="flex grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class="flex grid gap-8 md:grid-cols-3 lg:grid-cols-3">
           <?php foreach ($camps->campData as $camp) : ?>
-            <div class="flex flex-col justify-between w-full overflow-hidden rounded shadow-xl card bg-base-100">
+            <div class="flex flex-col justify-between w-full overflow-hidden rounded bg-base-100">
               <div class="flex-1">
                 <div class="relative">
                   <div class="h-[140px] md:h-[220px] flex items-center bg-gray-100 overflow-hidden">
                     <img src="<?php echo $camp['logo'] ?>" class="w-full" alt="Image Description">
                   </div>
                   <?php if ($camp['min_age'] ?? null && $camp['max_age']) : ?>
-                    <div class="absolute top-0 right-0 p-2 text-xl text-white font-caveatBrush bg-[#2b6fb1]">
+                    <!-- <div class="absolute top-0 right-0 p-2 text-xl text-white mb-4 bg-[#273c75]">
                       <div class="text-sm">ages</div>
                       <div><span class="font-bold"><?php echo $camp['min_age'] ?> - <?php echo $camp['max_age'] ?></span> <span class="text-xs">years</span></div>
-                    </div>
+                    </div> -->
                   <?php endif; ?>
                 </div>
-                <div class="w-full px-5 py-4 text-base-content">
-                  <h2 class="block my-0 mb-1 text-3xl font-semibold font-caveatBrush text-base-content"><?php echo $camp['name'] ?></h2>
-                  <a class="block mb-4 font-medium text-opacity-60 text-base-content">
+                <div class="w-full px-2 py-4 text-black">
+                  <h2 class="block my-0 mb-1 mb-4 text-2xl font-semibold text-black"><?php echo $camp['name'] ?></h2>
+                  <a class="block mb-4 font-medium text-black text-opacity-60">
                     <?php echo $camp['location'] ?>
                   </a>
                   <div class="flex flex-col justify-between mb-4">
@@ -138,8 +143,8 @@ $camps->setCampData($_GET['postcode'] ?? null, $_GET['distance'] ?? null);
                 </div>
               </div>
               <?php if ($camp['url'] ?? null) : ?>
-                <div class="w-full px-5 pb-4">
-                  <a href="<?php echo $camp['url'] ?>" class="w-full no-underline btn bg-[#2b6fb1] text-white hover:bg-[#63809d]">Visit Website <i class="fa-solid fa-arrow-right"></i></a>
+                <div class="w-full px-2 pb-4">
+                  <a href="<?php echo $camp['url'] ?>" class="w-full no-underline btn bg-[#273c75] text-white hover:bg-[#273c75]">Visit Website <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
               <?php endif; ?>
             </div>
@@ -152,46 +157,7 @@ $camps->setCampData($_GET['postcode'] ?? null, $_GET['distance'] ?? null);
       <?php endif; ?>
     </section>
   </div>
-  <script>
-    const validateUKPostcode = (postcode) => {
-      postcode = postcode.replace(/\s/g, '');
-      const pattern = /^(GIR 0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]|[A-HK-Y][0-9]([0-9]|[ABEHMNPRV-Y])))[0-9][ABD-HJLNP-UW-Z]{2})$/i;
-      return pattern.test(postcode);
-    }
-
-    const validateForm = (event) => {
-      const {
-        distance: {
-          value: {
-            distance
-          }
-        },
-        postcode: {
-          value: postcode
-        }
-      } = event.target.elements
-
-      // postcode-validation
-      // const postcodeValue = postcodeInput.value;
-
-      if (!validateUKPostcode(postcode)) {
-        event.preventDefault();
-        const postcodeValidation = document.getElementById('postcode-validation');
-        postcodeValidation.classList.remove('hidden')
-      } else {
-        postcodeValidation.classList.add('hidden')
-      }
-    }
-
-    const form = document.getElementById('mainForm');
-
-    // const postcode = "EC1A 1BB";
-    // if (validateUKPostcode(postcode)) {
-    //   console.log("Valid UK postcode");
-    // } else {
-    //   console.log("Invalid UK postcode");
-    // }
-  </script>
+  <?php wp_footer() ?>
 </body>
 
 </html>

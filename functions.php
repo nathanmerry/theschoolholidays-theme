@@ -326,7 +326,7 @@ function insertPost($data)
 function register_custom_import_route()
 {
     register_rest_route('/v1', '/import', array(
-        'methods' => 'GET', // You can use 'GET' or 'POST' depending on your needs
+        'methods' => 'POST',
         'callback' => 'handleImportPages',
     ));
 }
