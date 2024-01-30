@@ -94,12 +94,6 @@ $camps->setCampData($_GET['postcode'] ?? null, $_GET['distance'] ?? null);
                   <div class="h-[140px] md:h-[220px] flex items-center bg-gray-100 overflow-hidden">
                     <img src="<?php echo $camp['logo'] ?>" class="w-full" alt="Image Description">
                   </div>
-                  <?php if ($camp['min_age'] ?? null && $camp['max_age']) : ?>
-                    <!-- <div class="absolute top-0 right-0 p-2 text-xl text-white mb-4 bg-[#273c75]">
-                      <div class="text-sm">ages</div>
-                      <div><span class="font-bold"><?php echo $camp['min_age'] ?> - <?php echo $camp['max_age'] ?></span> <span class="text-xs">years</span></div>
-                    </div> -->
-                  <?php endif; ?>
                 </div>
                 <div class="w-full px-2 py-4 text-black">
                   <h2 class="block my-0 mb-1 mb-4 text-2xl font-semibold text-black"><?php echo $camp['name'] ?></h2>
@@ -107,6 +101,14 @@ $camps->setCampData($_GET['postcode'] ?? null, $_GET['distance'] ?? null);
                     <?php echo $camp['location'] ?>
                   </a>
                   <div class="flex flex-col justify-between mb-4">
+                    <?php if ($camp['min_age'] ?? null && $camp['max_age']) : ?>
+                      <div class="">
+                        <span class="inline-block mr-1 font-semibold">
+                          Ages:
+                        </span>
+                        <span class=""><?php echo $camp['min_age'] ?> - <?php echo $camp['max_age'] ?></span>
+                      </div>
+                    <?php endif; ?>
                     <?php if ($camp['opening_time'] ?? null && $camp['closing_time'] ?? null) : ?>
                       <div class="">
                         <span class="inline-block mr-1 font-semibold ">
