@@ -205,11 +205,11 @@ class Camps
      * @param array $coord1 An associative array containing latitude and longitude of the first point.
      * @param array $coord2 An associative array containing latitude and longitude of the second point.
      *
-     * @return float The calculated distance in kilometers.
+     * @return float The calculated distance in miles.
      */
     private function calculateHaversineDistance(array $coord1, array $coord2): float
     {
-        $earthRadius = 6371; // Earth's radius in kilometers (mean value)
+        $earthRadiusMiles = 3959; // Earth's radius in miles (mean value)
 
         $lat1 = deg2rad($coord1['latitude']);
         $lon1 = deg2rad($coord1['longitude']);
@@ -222,10 +222,11 @@ class Camps
         $a = sin($dlat / 2) * sin($dlat / 2) + cos($lat1) * cos($lat2) * sin($dlon / 2) * sin($dlon / 2);
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 
-        $distance = $earthRadius * $c; // Distance in kilometers
+        $distance = $earthRadiusMiles * $c; // Distance in miles
 
         return $distance;
     }
+
 
     /**
      * Fetch coordinates for a given postcode.
@@ -236,15 +237,9 @@ class Camps
      */
     private function fetchPostcodeLocationData(string $postcode): ?array
     {
-        $locationData = get_transient(getPostcodeTransientKey($postcode));
+        $locationData = fetchPostcodeLocationData($postcode);
 
-        if (!$locationData) {
-            $locationData = fetchPostcodeLocationData($postcode);
-
-            if (!$locationData) return null;
-
-            set_transient(getPostcodeTransientKey($postcode), $locationData);
-        }
+        if (!$locationData) return null;
 
         return [
             'latitude' => $locationData['latitude'],
