@@ -157,6 +157,16 @@ $camps->setCampData($_GET['postcode'] ?? null, $_GET['distance'] ?? null);
       <?php endif; ?>
     </section>
   </div>
+  <div class="bg-[#273c75] mt-10 text-sm text-white">
+    <div class="container flex items-center justify-between py-5">
+      <div class="">
+        Need more information? Email us at <a href="mailto:info@theschoolholidays.co.uk" class="">info@theschoolholidays.co.uk</a>
+      </div>
+      <div class="">
+        <img src="https://media.igms.io/2023/09/29/1698583256990-9e1843af-6c71-4f7a-8826-98bfa90b6de7.png" alt="Image Description" class=h-[50px]>
+      </div>
+    </div>
+  </div>
   <?php wp_footer() ?>
 </body>
 
