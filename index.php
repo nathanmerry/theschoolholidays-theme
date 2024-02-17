@@ -63,7 +63,7 @@ $holidayTerms = [
         </div>
         <div class="pt-5 pb-10">
           <form id="mainForm" class=" bg-[#fdb900] max-w-[900px] mx-auto px-[3px] py-[3px] flex md:flex-row flex-col items-end rounded-lg overflow-hidden gap-[3px]">
-            <div class="w-full md:w-3/12">
+            <div class="w-full md:w-5/12">
               <?php if ($camps->errors['postcode'] ?? null) : ?>
                 <p id="postcode-validation" class="mt-2 italic text-error"><?php echo $camps->errors['postcode'] ?></p>
               <?php endif; ?>
@@ -71,46 +71,12 @@ $holidayTerms = [
               <input class="w-full mt-0 input input-bordered" type="text" name="postcode" required placeholder="Enter Postcode" value="<?php echo formatUKPostcode($_GET['postcode'] ?? null) ?>">
             </div>
 
-            <div class="w-full md:w-3/12">
+            <div class="w-full md:w-5/12">
               <!-- <label class="text-white label" for="">Distance (kilometers)</label> -->
               <input class="w-full mt-0 input input-bordered" type="number" min="0" name="distance" placeholder="Distance (Miles)" required value="<?php echo $_GET['distance'] ?? null ?>">
             </div>
 
-            <div class="w-full md:w-3/12">
-              <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="bg-white focus:ring-4 w-full text-black focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center btn" type="button">
-                Holiday Term
-                <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
-
-              <!-- Dropdown menu -->
-              <div id="dropdown" class="z-10 hidden w-56 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
-                <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">
-                  Category
-                </h6>
-                <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
-                  <?php foreach ($holidayTerms as $term) : ?>
-                    <li class="flex items-center">
-                    <input
-                      id="<?php echo $term . '-checkbox' ?>"
-                      type="checkbox"
-                      name="term[]"
-                      <?php echo isChecked($term) ? 'checked' : '' ?>
-                      value="<?php echo strtolower($term); ?>"
-                      class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                    />
-
-                      <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
-                        <?php echo strtoupper($term) ?>
-                      </label>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
-              </div>
-            </div>
-
-            <div class="w-full md:w-3/12">
+            <div class="w-full md:w-2/12">
               <button class="w-full btn outline-none border-0 text-white bg-[#273c75] hover:!bg-[#ffd04e]">Search</button>
             </div>
           </form>
