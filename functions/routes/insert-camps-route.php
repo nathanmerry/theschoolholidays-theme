@@ -44,7 +44,19 @@ class InsertCampsRoute
                 'logo' => attachment_url_to_postid($item['Logo']),
             ];
 
-            $openingMonthsKeys = ['Feb', 'Easter', 'May', 'Summer', 'Oct', 'Christmas'];
+            $openingMonthsKeys = [
+                'Feb',
+                'Easter',
+                'May',
+                'Summer',
+                'Oct',
+                'Christmas',
+                'EasterSelect',
+                'MaySelect',
+                'SummerSelect',
+                'OctSelect',
+                'ChristmasSelect',
+            ];
 
             foreach ($openingMonthsKeys as $month) {
                 if ($item[$month] === 'Yes') {

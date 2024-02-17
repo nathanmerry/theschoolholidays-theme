@@ -32,14 +32,6 @@
 $hasInput = !!($_GET['postcode'] ?? null) && !!($_GET['distance'] ?? null);
 $camps = new Camps();
 $camps->setCampData($_GET['postcode'] ?? null, $_GET['distance'] ?? null);
-$holidayTerms = [
-  'feb',
-  'easter',
-  'may',
-  'summer',
-  'oct',
-  'christmas',
-];
 ?>
 
 <body class="w-full h-screen text-black bg-base">
@@ -229,9 +221,9 @@ $holidayTerms = [
   </div>
 
   <script>
-    window.addEventListener("load", function(event) {
-      document.querySelector('[data-dropdown-toggle="dropdown"]').click();
-    });
+    // window.addEventListener("load", function(event) {
+    //   document.querySelector('[data-dropdown-toggle="dropdown"]').click();
+    // });
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
