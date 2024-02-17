@@ -156,14 +156,15 @@ $holidayTerms = [
                       <?php echo $camp['location'] ?>
                     </a>
                     <div class="flex flex-col justify-between mb-4">
-                      <?php if ($camp['min_age'] ?? null && $camp['max_age']) : ?>
-                        <div class="">
+                      <div class="flex items-center">
+                        <?php if ($camp['min_age'] ?? null && $camp['max_age']) : ?>
                           <span class="inline-block mr-1 font-semibold">
                             Ages:
                           </span>
                           <span class=""><?php echo $camp['min_age'] ?> - <?php echo $camp['max_age'] ?></span>
-                        </div>
-                      <?php endif; ?>
+                        <?php endif; ?>
+                        <span class="inline-block ml-2 text-sm italic"><?php echo $camp['age_text'] ?? '' ?></span>
+                      </div>
                       <?php if ($camp['opening_time'] ?? null && $camp['closing_time'] ?? null) : ?>
                         <div class="">
                           <span class="inline-block mr-1 font-semibold ">
@@ -213,6 +214,7 @@ $holidayTerms = [
           There are no results within that distance from the given postcode
         </div>
       <?php endif; ?>
+
     </section>
   </div>
   <div class="bg-[#273c75] mt-10 text-sm text-white">
